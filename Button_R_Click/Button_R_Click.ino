@@ -11,7 +11,7 @@ bool buttonHold = false;
 int counter = 0;
 bool flag = false;
 
-String credentials = "{Radionice/1112131415/kth/5ddbd425-6b97-4cbd-b670-c221222ac694/}"; // change depending on your device and WiFi
+String credentials = "{AndroidAP2/execom123/kth/5ddbd425-6b97-4cbd-b670-c221222ac694/}"; // change depending on your device and WiFi { / SSID / wifi password / device key / device password / }
 
 void setup() {
   // put your setup code here, to run once:
@@ -76,7 +76,6 @@ void loop() {
     if(flag == true)
     {
       Serial1.print("YELLOW");
-      delay(50);
       flag = false;
     }
   }

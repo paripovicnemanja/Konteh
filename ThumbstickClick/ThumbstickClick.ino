@@ -9,14 +9,15 @@
 
 #define UP 24
 #define DOWN 26
-
-String credentials = "{Radionice/1112131415/kth/5ddbd425-6b97-4cbd-b670-c221222ac694/}"; // change depending on your device and WiFi
+                   
+String credentials = "{AndroidAP2/execom123/kth/5ddbd425-6b97-4cbd-b670-c221222ac694/}"; // change depending on your WiFi and device { SSID /  wifi password / device key / device password  }
 
 int readvalue;
-String incoming = "";
+int readvalue_LR;
+//String incoming = "";
 int flagUp = 0;
 int flagDown = 0;
-int pusteno = 0;
+int hold = 0;
 
 void setup() {
   //set pin modes
@@ -24,12 +25,10 @@ void setup() {
   pinMode(UP, OUTPUT);
   pinMode(DOWN, OUTPUT);
 
-
   pinMode(SELPIN, OUTPUT);
   pinMode(DATAOUT, OUTPUT);
   pinMode(DATAIN, INPUT);
   pinMode(SPICLOCK, OUTPUT);
-  //disable device to start with
   digitalWrite(SELPIN, HIGH);
   digitalWrite(DATAOUT, LOW);
   digitalWrite(SPICLOCK, LOW);
@@ -37,14 +36,12 @@ void setup() {
   Serial.begin(9600);
   Serial1.begin(9600);
   delay(100);
-
-
   Serial1.print(credentials);
 }
 
 void loop() {
   readvalue = read_adc(1);
-  //readvalue = read_adc(2);
+  //readvalueLR = read_adc(2);  // read value left/right - help for additional task  
 
   if (readvalue > 3500)
   {
@@ -60,21 +57,21 @@ void loop() {
   {
     digitalWrite(UP, LOW);
     digitalWrite(DOWN, LOW);
-    pusteno = 0;
+    hold = 0;
     flagUp = 0;
     flagDown = 0;
   }
-  if (flagUp == 1 && pusteno == 0)
+  if (flagUp == 1 && hold == 0)
   {
     Serial1.write("NAPRED");
     flagUp = 0;
-    pusteno = 1;
+    hold = 1;
   }
-  if (flagDown == 1 && pusteno == 0)
+  if (flagDown == 1 && hold == 0)
   {
     Serial1.write("NAZAD");
     flagDown = 0;
-    pusteno = 1;
+    hold = 1;
   }
 }
 

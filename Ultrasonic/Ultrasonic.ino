@@ -6,7 +6,7 @@ const int echoPin = 8;
 const int greenLed = 28;
 const int redLed = 30;
 
-String credentials = "{Radionice/1112131415/kth/5ddbd425-6b97-4cbd-b670-c221222ac694/}";
+String credentials = "{AndroidAP2/jurosevic/kth/5ddbd425-6b97-4cbd-b670-c221222ac694/}"; // { / SSID / Wifi password / device key / device password / }
 
 // defines variables
 
@@ -58,19 +58,5 @@ void loop() {
     digitalWrite(redLed, LOW);
     digitalWrite(greenLed, HIGH);
   }
-/*
-  if(flagRed == true)
-  {
-    Serial1.write("RED");
-    flagRed = false;
-    delay(500);
-  }
-  if(flagGreen == true)
-  {
-    Serial1.write("GREEN");
-    flagGreen = false;
-    delay(500);
-  }*/
-
   delay(500);
 }
